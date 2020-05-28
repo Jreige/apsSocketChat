@@ -93,9 +93,9 @@ public class Chat extends JFrame {
 	private void send() {
 		if (jTFMessages.getText().length() > 0) {
 			DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-			String message = "<b>[ " + dateFormat.format(new Date()) + "] Eu: </b><i>" + jTFMessages.getText() + "</i><br>";
+			String message = "<b>[ " + dateFormat.format(new Date()) + "]" + this.jLTitle.getText() + ": </b><i>" + jTFMessages.getText() + "</i><br>";
 			Utils.sendMessage(connection, "MESSAGE;" + message);
-			appenedMessage(message);
+			appenedMessage("<b>["+ dateFormat.format(new Date()) + "] Eu: </b><i>" + jTFMessages.getText() + "</i><br>");
 			jTFMessages.setText("");
 		}
 	}

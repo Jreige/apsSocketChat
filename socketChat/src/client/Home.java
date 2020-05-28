@@ -176,18 +176,19 @@ public class Home extends JFrame {
 		int index = jList.getSelectedIndex();
 		
 		if(index != -1) {
-			String value = jList.getSelectedValue().toString();
-			String[] splited = connectionInfo.split(":");
-			if(!openedChats.contains(connectionInfo)) {
+			String connectionInfoF = jList.getSelectedValue().toString();
+			String[] splited = connectionInfoF.split(":");
+			if(!openedChats.contains(connectionInfoF)) {
 				try {
 					Socket connection = new Socket(splited[1], Integer.parseInt(splited[2]));
 					Utils.sendMessage(connection, "OPEN_CHAT;" + this.connectionInfo);//Abre chat com connectInfo deste home
 					
 					CClientListener cClientListener = new CClientListener(this, connection);
-					cClientListener.setChat(new Chat(this, connection, connectionInfo, this.connectionInfo.split(":")[0]));
+					cClientListener.setChat(new Chat(this, connection, connectionInfoF, this.connectionInfo.split(":")[0]));
 					cClientListener.setChatOpen(true);
-					connectedListeners.put(connectionInfo, cClientListener);
-					openedChats.add(connectionInfo);
+					connectedListeners.put(connectionInfoF, cClientListener);
+					openedChats.add(connectionInfoF);
+					new Thread(cClientListener).start();
 				} catch (IOException e) {
 					System.out.println("[Home:openChat] -> " + e.getMessage());
 				}
