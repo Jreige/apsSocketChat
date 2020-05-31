@@ -1,11 +1,11 @@
-package br.com.aps.unip.server;
+package br.unip.aps.server;
 
 import java.io.IOException;
 import java.net.Socket;
 
-import br.com.aps.unip.server.common.Utils;
-import br.com.aps.unip.view.Chat;
-import br.com.aps.unip.view.Home;
+import br.unip.aps.server.common.Utils;
+import br.unip.aps.view.Chat;
+import br.unip.aps.view.Home;
 
 public class CClientListener implements Runnable {
 	

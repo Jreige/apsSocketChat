@@ -1,8 +1,10 @@
-package br.com.aps.unip.view;
+package br.unip.aps.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -16,10 +18,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import br.com.aps.unip.model.bean.Client;
-import br.com.aps.unip.model.dao.ClientDao;
-import br.com.aps.unip.server.Server;
-import br.com.aps.unip.server.common.Utils;
+import br.unip.aps.dao.ClientDao;
+import br.unip.aps.model.Cliente;
+import br.unip.aps.server.Server;
+import br.unip.aps.server.common.Utils;
 
 public class Login extends JFrame {
 
@@ -33,6 +35,7 @@ public class Login extends JFrame {
 	private JLabel jLPort;
 	private JLabel jLPass;
 	private JLabel jLTitle;
+	private JLabel jLForgotPass;
 	private JTextField jTUSER;
 	private JTextField jTPort;
 	private JPasswordField jPFPass;
@@ -52,6 +55,7 @@ public class Login extends JFrame {
 		jLUser  = new JLabel("Apelido:", SwingConstants.CENTER);
 		jLPort  = new JLabel("Porta:", SwingConstants.CENTER);
 		jLPass  = new JLabel("Senha:", SwingConstants.CENTER);
+		jLForgotPass = new JLabel("<html> <font color=#0050FF><u><b>Forgot password?</b></u></font</html>");
 		jLTitle = new JLabel();
 		jTUSER  = new JTextField();
 		jTPort  = new JTextField();
@@ -68,7 +72,9 @@ public class Login extends JFrame {
 		jLTitle.setBounds(10, 10, 375, 100);
 		final ImageIcon icon = new ImageIcon("./images/icone.svg");
 		jLTitle.setIcon(new ImageIcon(icon.getImage().getScaledInstance(375, 100, Image.SCALE_SMOOTH)));
-
+		
+		jLForgotPass.setBounds(280, 260, 105, 15);
+		
 		jBLogin.setBounds(10, 280, 182, 48);
 		jBAcess.setBounds(200, 280, 182, 48);
 
@@ -93,20 +99,44 @@ public class Login extends JFrame {
 		this.add(jLPort);
 		this.add(jLPass);
 		this.add(jLTitle);
+		this.add(jLForgotPass);
 		this.add(jTPort);
 		this.add(jTUSER);
 		this.add(jPFPass);
 	}
 
 	private void insertActions() {
-		jBLogin.addActionListener(event -> {
+		MouseListener mlactions = new MouseListener(){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new UpdatePass();
+			
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}	
+			}; 
+			
+			jLForgotPass.addMouseListener(mlactions);
+		
+			jBLogin.addActionListener(event -> {
 			try {
 
 				String nickname = jTUSER.getText();
 				int port = Integer.parseInt(jTPort.getText());
 				String password = String.valueOf(jPFPass.getPassword());
 				
-				Client client = new Client();
+				Cliente client = new Cliente();
 				ClientDao dao = new ClientDao();
 
 				jTUSER.setText("");

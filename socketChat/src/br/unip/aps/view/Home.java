@@ -1,4 +1,4 @@
-package br.com.aps.unip.view;
+package br.unip.aps.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.WindowEvent;
@@ -19,8 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
-import br.com.aps.unip.server.CClientListener;
-import br.com.aps.unip.server.common.Utils;
+import br.unip.aps.server.CClientListener;
+import br.unip.aps.server.common.Utils;
 
 public class Home extends JFrame {
 

@@ -1,4 +1,4 @@
-package br.com.aps.unip.view;
+package br.unip.aps.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -18,7 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import br.com.aps.unip.server.common.Utils;
+import br.unip.aps.server.common.Utils;
 
 public class Chat extends JFrame {
 

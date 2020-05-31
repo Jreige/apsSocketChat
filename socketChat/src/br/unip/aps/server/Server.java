@@ -1,4 +1,4 @@
-package br.com.aps.unip.server;
+package br.unip.aps.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.aps.unip.server.common.Utils;
+import br.unip.aps.server.common.Utils;
 
 public class Server {
 

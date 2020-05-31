@@ -1,15 +1,15 @@
-package br.com.aps.unip.model.dao;
+package br.unip.aps.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
-import br.com.aps.unip.connection.ConnectionFactory;
-import br.com.aps.unip.model.bean.Client;
+import br.unip.aps.connection.ConnectionFactory;
+import br.unip.aps.model.Cliente;
 
-public class ClientDao {
+public class ClientDao extends DaoGenerico<Cliente>{
 
-	public Client save(Client client) {
+	public Cliente save(Cliente client) {
 		EntityManager em = new ConnectionFactory().getConnection();
 		try {
 			em.getTransaction().begin();
@@ -18,14 +18,14 @@ public class ClientDao {
 			Long existClient =   (Long) query.getSingleResult();
 			if(client.getId() == 0 && existClient==0) {
 			em.persist(client);
-			JOptionPane.showMessageDialog(null, "Novo usuário registrado com sucesso!");
+			JOptionPane.showMessageDialog(null, "Novo usuï¿½rio registrado com sucesso!");
 			}else {
-			JOptionPane.showMessageDialog(null, "Usuário já existe!");
+			JOptionPane.showMessageDialog(null, "Usuï¿½rio jï¿½ existe!");
 			}
 			em.getTransaction().commit();
 			
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Usuário não pode ser salvo! <br> [ERRO] -> " + e);
+			JOptionPane.showMessageDialog(null, "Usuï¿½rio nï¿½o pode ser salvo! <br> [ERRO] -> " + e);
 			em.getTransaction().rollback();
 			e.printStackTrace();
 		}finally {
@@ -34,15 +34,15 @@ public class ClientDao {
 		return client;
 	}
 	
-	public Client findByName(String name) {
+	public Cliente findByName(String name) {
 		EntityManager em = new ConnectionFactory().getConnection();
-		Client client = null;
+		Cliente client = null;
 		try {
 			Query query = em.createQuery("select c from Client c where c.name = :name");
 			query.setParameter("name", name);
-			client = (Client) query.getSingleResult();
+			client = (Cliente) query.getSingleResult();
 		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, "prooblemas na validação: [ERRO] -> " + e);
+			JOptionPane.showMessageDialog(null, "prooblemas na validaï¿½ï¿½o: [ERRO] -> " + e);
 			System.out.println(e);
 		}finally{
 			em.close();

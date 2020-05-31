@@ -1,4 +1,4 @@
-package br.com.aps.unip.server.common;
+package br.unip.aps.server.common;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

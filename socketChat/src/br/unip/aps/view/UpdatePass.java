@@ -1,4 +1,4 @@
-package br.com.aps.unip.view;
+package br.unip.aps.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,27 +10,23 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import br.com.aps.unip.model.bean.Client;
-import br.com.aps.unip.model.dao.ClientDao;
+import br.unip.aps.dao.ClientDao;
+import br.unip.aps.model.Cliente;
 
-public class RegisterUser extends JFrame {
-
-	/**
-	 * 
-	 */
+public class UpdatePass extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JLabel jLEmail;
-	private JLabel jLName;
 	private JLabel jLPass;
+	private JLabel jLConfirmPass;
 	private JButton jBCancel;
 	private JButton jBClear;
 	private JButton jBAcces;
 	private JTextField jTFEmail;
-	private JTextField jTFName;
+	private JPasswordField jTFConfirmPass;
 	private JPasswordField jPFPass;
 
-	public RegisterUser() {
-		super("CadastroUser");
+	public UpdatePass() {
+		super("UpdatePass");
 		initComponents();
 		configComponents();
 		insertComponents();
@@ -39,15 +35,15 @@ public class RegisterUser extends JFrame {
 	}
 
 	private void initComponents() {
-		jLEmail		= new JLabel("Email:");
-		jLName		= new JLabel("Nome:");
-		jLPass		= new JLabel("Senha:");
-		jBCancel	= new JButton("Cancelar");
-		jBClear		= new JButton("Limpar");
-		jBAcces		= new JButton("Cadastrar");
-		jTFEmail	= new JTextField();
-		jTFName		= new JTextField();
-		jPFPass 	= new JPasswordField();
+		jLEmail		  = new JLabel("Email:");
+		jLPass		  = new JLabel("Digite a nova senha:");
+		jLConfirmPass = new JLabel("Confirme a senha:");
+		jBCancel	  = new JButton("Cancelar");
+		jBClear		  = new JButton("Limpar");
+		jBAcces		  = new JButton("Cadastrar");
+		jTFEmail	  = new JTextField();
+		jTFConfirmPass= new JPasswordField();
+		jPFPass 	  = new JPasswordField();
 
 	}
 
@@ -67,9 +63,9 @@ public class RegisterUser extends JFrame {
 		jLEmail.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		jTFEmail.setBounds(120, 10, 360, 48);
 
-		jLName.setBounds(10, 70, 100, 48);
-		jLName.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		jTFName.setBounds(120, 70, 360, 48);
+		jLConfirmPass.setBounds(10, 70, 100, 48);
+		jLConfirmPass.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		jTFConfirmPass.setBounds(120, 70, 360, 48);
 
 		jLPass.setBounds(10, 130, 100, 48);
 		jLPass.setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -81,25 +77,24 @@ public class RegisterUser extends JFrame {
 		this.add(jBClear);
 		this.add(jBCancel);
 		this.add(jLEmail);
-		this.add(jLName);
+		this.add(jLConfirmPass);
 		this.add(jLPass);
 		this.add(jTFEmail);
-		this.add(jTFName);
+		this.add(jTFConfirmPass);
 		this.add(jPFPass);
 	}
 
 	private void insertActions() {
 		jBAcces.addActionListener(event -> {
-			Client client = new Client();
+			Cliente client = new Cliente();
 			ClientDao dao = new ClientDao();
 			client.setEmail(jTFEmail.getText());
-			client.setNome(jTFName.getText());
 			String password = String.valueOf(jPFPass.getPassword());
 			client.setSenha(password);
 			dao.save(client);
 			
 			jTFEmail.setText("");
-			jTFName.setText("");
+			jTFConfirmPass.setText("");
 			jPFPass.setText("");
 			
 			new Login(); 
@@ -107,7 +102,7 @@ public class RegisterUser extends JFrame {
 		});
 		jBClear.addActionListener(event -> {
 			jTFEmail.setText("");
-			jTFName.setText("");
+			jTFConfirmPass.setText("");
 			jPFPass.setText("");
 		});
 		
@@ -123,6 +118,6 @@ public class RegisterUser extends JFrame {
 	}
 	
 	public static void main( String[] args) {
-	   RegisterUser cad = new RegisterUser();
+	   UpdatePass updatePass = new UpdatePass();
 	}
 }

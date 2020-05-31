@@ -1,4 +1,4 @@
-package br.com.aps.unip.connection;
+package br.unip.aps.connection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
